@@ -13,9 +13,7 @@ public:
         const double       price,
         GuitarSpec        &spec
     ) : Instrument(serialNumber, price, static_cast<InstrumentSpec&>(this->spec)), spec(spec)
-    {
-        setSpec(static_cast<InstrumentSpec&>(this->spec));
-    }
+    {}
 
 private:
     GuitarSpec spec;

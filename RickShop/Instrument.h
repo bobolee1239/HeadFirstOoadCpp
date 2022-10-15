@@ -14,9 +14,6 @@ public:
     ) : serialNumber(serialNumber), price(price), spec(spec)
     {}
 
-    void setSpec(const InstrumentSpec& spec)
-    {this->spec = spec;}
-
     std::string getSerialNumber()
     {return serialNumber;}
     std::string getSerialNumber() const

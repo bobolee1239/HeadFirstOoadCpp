@@ -16,16 +16,12 @@
 class Inventory 
 {
 public:
-    Inventory() : stock(), guitarStock(), mandolinStock()
+    Inventory() : stock()
     {}
 
     ~Inventory()
     {
-        for (auto& item : guitarStock)
-        {
-            delete item;
-        }
-        for (auto& item : mandolinStock)
+        for (auto& item : stock)
         {
             delete item;
         }
@@ -36,31 +32,28 @@ public:
         const double          price,
         InstrumentSpec      &&spec
     ) {
-        Instrument* pInstrument;
+        int ret = 1;
         if (dynamic_cast<GuitarSpec*>(&spec))
         {
-            guitarStock.push_back(
+            stock.push_back(static_cast<Instrument*>(
                 new Guitar(
                     serialNumber, 
                     price, 
                     dynamic_cast<GuitarSpec&>(spec)
-                    ));
-            pInstrument = static_cast<Instrument*>(guitarStock.back());
+                    )));
         }
         else if (dynamic_cast<MandolinSpec*>(&spec))
         {
-            mandolinStock.push_back(
+            stock.push_back(static_cast<Instrument*>(
                 new Mandolin(
                     serialNumber,
                     price,
                     dynamic_cast<MandolinSpec&>(spec)
-                ));
-            pInstrument = static_cast<Instrument*>(mandolinStock.back());
+                )));
         }
         else
-        {return 0;}
-        stock.push_back(pInstrument);
-        return 1;
+        {ret = 0;}
+        return ret;
     }
 
     const Instrument* get(const std::string& serialNumber) 
@@ -76,11 +69,11 @@ public:
     std::list<const Instrument*> search(const GuitarSpec& target)
     {
         std::list<const Instrument*> matches;
-        for (auto& pItem : guitarStock)
+        for (auto& pItem : stock)
         {
             if (pItem->getSpec() == target)
             {
-                matches.push_back(static_cast<const Instrument*>(pItem));
+                matches.push_back(pItem);
             }
         }
         return matches;
@@ -89,11 +82,11 @@ public:
     std::list<const Instrument*> search(const MandolinSpec& target)
     {
         std::list<const Instrument*> matches;
-        for (auto& pItem : mandolinStock)
+        for (auto& pItem : stock)
         {
             if (pItem->getSpec() == target)
             {
-                matches.push_back(static_cast<const Instrument*>(pItem));
+                matches.push_back(pItem);
             }
         }
         return matches;
@@ -108,10 +101,8 @@ public:
         return os;
     }
 
-// private:
+private:
     std::list<Instrument*>  stock;
-    std::list<Guitar*>      guitarStock;
-    std::list<Mandolin*>    mandolinStock;
 };
 
 

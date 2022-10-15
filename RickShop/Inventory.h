@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include <vector>
+#include <list>
 
 #include "Instrument.h"
 #include "InstrumentSpec.h"
@@ -16,8 +16,20 @@
 class Inventory 
 {
 public:
-    Inventory() : stock(), guitarStock()
+    Inventory() : stock(), guitarStock(), mandolinStock()
     {}
+
+    ~Inventory()
+    {
+        for (auto& item : guitarStock)
+        {
+            delete item;
+        }
+        for (auto& item : mandolinStock)
+        {
+            delete item;
+        }
+    }
 
     int addInstrument(
         const std::string    &serialNumber,
@@ -28,22 +40,22 @@ public:
         if (dynamic_cast<GuitarSpec*>(&spec))
         {
             guitarStock.push_back(
-                Guitar(
+                new Guitar(
                     serialNumber, 
                     price, 
                     dynamic_cast<GuitarSpec&>(spec)
                     ));
-            pInstrument = static_cast<Instrument*>(&guitarStock.back());
+            pInstrument = static_cast<Instrument*>(guitarStock.back());
         }
         else if (dynamic_cast<MandolinSpec*>(&spec))
         {
             mandolinStock.push_back(
-                Mandolin(
+                new Mandolin(
                     serialNumber,
                     price,
                     dynamic_cast<MandolinSpec&>(spec)
                 ));
-            pInstrument = static_cast<Instrument*>(&mandolinStock.back());
+            pInstrument = static_cast<Instrument*>(mandolinStock.back());
         }
         else
         {return 0;}
@@ -53,36 +65,35 @@ public:
 
     const Instrument* get(const std::string& serialNumber) 
     {
-        for (int n=0; n<stock.size(); ++n)
+        for (auto& pItem : stock)
         {
-            if (stock[n]->getSerialNumber() == serialNumber)
-            {return stock[n];}
+            if (pItem->getSerialNumber() == serialNumber)
+            {return pItem;}
         }
         return NULL;
     }
     
-    std::vector<const Instrument*> search(const GuitarSpec& target)
+    std::list<const Instrument*> search(const GuitarSpec& target)
     {
-        std::vector<const Instrument*> matches;
-        for (int n=0; n<guitarStock.size(); ++n)
+        std::list<const Instrument*> matches;
+        for (auto& pItem : guitarStock)
         {
-            std::cout << __func__ << ": " << n << std::endl;
-            if (target == guitarStock[n].getSpec())
+            if (target == pItem->getSpec())
             {
-                matches.push_back(static_cast<const Instrument*>(&guitarStock[n]));
+                matches.push_back(static_cast<const Instrument*>(pItem));
             }
         }
         return matches;
     }
 
-    std::vector<const Instrument*> search(const MandolinSpec& target)
+    std::list<const Instrument*> search(const MandolinSpec& target)
     {
-        std::vector<const Instrument*> matches;
-        for (int n=0; n<mandolinStock.size(); ++n)
+        std::list<const Instrument*> matches;
+        for (auto& pItem : mandolinStock)
         {
-            if (mandolinStock[n].getSpec() == target)
+            if (pItem->getSpec() == target)
             {
-                matches.push_back(static_cast<const Instrument*>(&mandolinStock[n]));
+                matches.push_back(static_cast<const Instrument*>(pItem));
             }
         }
         return matches;
@@ -97,10 +108,10 @@ public:
         return os;
     }
 
-private:
-    std::vector<Instrument*> stock;
-    std::vector<Guitar>      guitarStock;
-    std::vector<Mandolin>    mandolinStock;
+// private:
+    std::list<Instrument*>  stock;
+    std::list<Guitar*>      guitarStock;
+    std::list<Mandolin*>    mandolinStock;
 };
 
 

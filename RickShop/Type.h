@@ -13,9 +13,9 @@ enum Type {
 std::ostream& operator << (std::ostream& os, const Type& type)
 {
     switch(type) {
-    case ACOUSTIC: os << "acoustic";
-    case ELECTRIC: os << "electric";
-    default:       os << "unspecified";
+    case ACOUSTIC: os << "acoustic"; break;
+    case ELECTRIC: os << "electric"; break;
+    default:       os << "unspecified"; break;
     }
     return os;
 }

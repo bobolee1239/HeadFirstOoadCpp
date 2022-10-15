@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <list>
 #include <string>
 
 #include "Wood.h"
@@ -25,18 +25,18 @@ int main(int argc, char* argv[])
 
     GuitarSpec whatErinLikes(FENDER, "Stratocastor", ELECTRIC, 6, ALDER, ALDER);
     
-    vector<const Instrument*> matches = inventory.search(whatErinLikes);
+    list<const Instrument*> matches = inventory.search(whatErinLikes);
 
     const int numFound = matches.size();
     if (numFound)
     {
         cout << "Erin, you might like these guitars:" << endl;
-        for (int n=0; n<numFound; ++n)
+        for (auto& item : matches)
         {
-            const InstrumentSpec& spec = matches[n]->getSpec();
+            const InstrumentSpec& spec = item->getSpec();
             cout << "  We have a " << spec.getBuilder() << " " << spec.getModel() << " " << spec.getType();
             cout << " guitar:\n     " << spec.getBackWood() << " back and sides,\n     " << spec.getTopWood();
-            cout << " top.\n  You can have it for only $" << matches[n]->getPrice() << "!\n  ----" << endl;
+            cout << " top.\n  You can have it for only $" << item->getPrice() << "!\n  ----" << endl;
         }
     }
     else

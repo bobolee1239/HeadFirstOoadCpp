@@ -59,7 +59,6 @@ public:
     }
     virtual bool equal(const InstrumentSpec& other) const
     {
-        std::cout << __func__ << std::endl;
         const bool match = (builder  == other.builder)   &&
                            (model    == other.model)     &&
                            (type     == other.type)      &&

@@ -13,9 +13,9 @@ enum Style {
 std::ostream& operator << (std::ostream& os, const Style& style)
 {
     switch(style) {
-    case A:   os << "A style";
-    case F:   os << "F style";
-    default:  os << "Unspecified";
+    case A:   os << "A style"; break;
+    case F:   os << "F style"; break;
+    default:  os << "Unspecified"; break;
     }
     return os;
 }

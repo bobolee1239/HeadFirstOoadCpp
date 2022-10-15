@@ -19,15 +19,15 @@ enum Wood {
 std::ostream& operator << (std::ostream& os, const Wood& wood)
 {
     switch (wood) {
-    case INDIAN_ROSEWOOD:    os << "Indian Rosewood";
-    case BRAZILIAN_ROSEWOOD: os << "Brazilian Rosewood";
-    case MAHOGANY:           os << "Mahogany";
-    case MAPLE:              os << "Maple";
-    case COCOBOLO:           os << "Cocobolo";
-    case CEDAR:              os << "Cedar";
-    case ADIRONDACK:         os << "Adirondack";
-    case ALDER:              os << "Alder";
-    case SITKA:              os << "Sitka";
+    case INDIAN_ROSEWOOD:    os << "Indian Rosewood"; break;
+    case BRAZILIAN_ROSEWOOD: os << "Brazilian Rosewood"; break;
+    case MAHOGANY:           os << "Mahogany"; break;
+    case MAPLE:              os << "Maple"; break;
+    case COCOBOLO:           os << "Cocobolo"; break;
+    case CEDAR:              os << "Cedar"; break;
+    case ADIRONDACK:         os << "Adirondack"; break;
+    case ALDER:              os << "Alder"; break;
+    case SITKA:              os << "Sitka"; break;
     default:                 os << "unspecified";
     }
     return os;

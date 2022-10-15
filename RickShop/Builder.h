@@ -18,14 +18,29 @@ enum Builder {
 std::ostream& operator << (std::ostream& os, const Builder& builder) 
 {
     switch(builder) {
-      case FENDER:   os << "Fender";
-      case MARTIN:   os << "Martin";
-      case GIBSON:   os << "Gibson";
-      case COLLINGS: os << "Collings";
-      case OLSON:    os << "Olson";
-      case RYAN:     os << "Ryan";
-      case PRS :     os << "PRS";
-      default:       os << "Unspecified";
+      case FENDER:   
+        os << "Fender";
+        break;
+      case MARTIN:   
+        os << "Martin";
+        break;
+      case GIBSON:   
+        os << "Gibson";
+        break;
+      case COLLINGS: 
+        os << "Collings";
+        break;
+      case OLSON:    
+        os << "Olson";
+        break;
+      case RYAN:     
+        os << "Ryan";
+        break;
+      case PRS :     
+        os << "PRS";
+        break;
+      default:       
+        os << "Unspecified";
     }
     return os;
 }

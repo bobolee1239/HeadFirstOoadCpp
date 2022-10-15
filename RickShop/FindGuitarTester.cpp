@@ -21,6 +21,7 @@ int main(int argc, char* argv[])
 {
     Inventory inventory;
     constructInventory(inventory);
+    cout << "[Stock]:" << endl;
     cout << inventory << endl;
 
     GuitarSpec whatErinLikes(FENDER, "Stratocastor", ELECTRIC, 6, ALDER, ALDER);

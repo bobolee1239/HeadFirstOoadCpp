@@ -78,7 +78,7 @@ public:
         std::list<const Instrument*> matches;
         for (auto& pItem : guitarStock)
         {
-            if (target == pItem->getSpec())
+            if (pItem->getSpec() == target)
             {
                 matches.push_back(static_cast<const Instrument*>(pItem));
             }

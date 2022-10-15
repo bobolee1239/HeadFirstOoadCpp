@@ -34,11 +34,6 @@ public:
         return InstrumentSpec::equal(static_cast<const InstrumentSpec&>(other)) &&
                numStrings == other.numStrings;
     }
-    bool equal(const GuitarSpec& other)
-    {
-        return InstrumentSpec::equal(static_cast<const InstrumentSpec&>(other)) &&
-               numStrings == other.numStrings;
-    }
     bool equal(const InstrumentSpec& other) const
     {
         const GuitarSpec* pOtherGuitar = dynamic_cast<const GuitarSpec*>(&other);
@@ -50,27 +45,8 @@ public:
         else
         {return false;}
     }
-    bool equal(const InstrumentSpec& other)
-    {
-        const GuitarSpec* pOtherGuitar = dynamic_cast<const GuitarSpec*>(&other);
-        if (pOtherGuitar)
-        {
-            return InstrumentSpec::equal(other) &&
-                   numStrings == pOtherGuitar->numStrings;
-        }
-        else
-        {return false;}
-    }
 
-    bool operator == (const GuitarSpec& other) 
-    {
-        return equal(other);
-    }
     bool operator == (const GuitarSpec& other) const
-    {
-        return equal(other);
-    }
-    bool operator == (const InstrumentSpec& other) 
     {
         return equal(other);
     }

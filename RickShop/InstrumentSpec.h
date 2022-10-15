@@ -48,15 +48,6 @@ public:
     Wood getTopWood() const
     {return topWood;}
 
-    virtual bool equal(const InstrumentSpec& other)
-    {
-        const bool match = (builder  == other.builder)   &&
-                           (model    == other.model)     &&
-                           (type     == other.type)      &&
-                           (backWood == other.backWood)  &&
-                           (topWood  == other.topWood);
-        return match;
-    }
     virtual bool equal(const InstrumentSpec& other) const
     {
         const bool match = (builder  == other.builder)   &&
@@ -67,10 +58,6 @@ public:
         return match;
     }
 
-    virtual bool operator == (const InstrumentSpec& other) 
-    {
-        return equal(other);
-    }
     virtual bool operator == (const InstrumentSpec& other) const
     {
         return equal(other);

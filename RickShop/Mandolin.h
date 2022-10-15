@@ -12,7 +12,7 @@ public:
         const std::string  &serialNumber,
         const double        price,
         MandolinSpec       &spec
-    ) : Instrument(serialNumber, price, static_cast<InstrumentSpec&>(spec)), spec(spec)
+    ) : Instrument(serialNumber, price, static_cast<InstrumentSpec&>(this->spec)), spec(spec)
     {}
 
 private:

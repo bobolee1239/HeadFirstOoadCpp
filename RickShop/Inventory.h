@@ -66,20 +66,7 @@ public:
         return NULL;
     }
     
-    std::list<const Instrument*> search(const GuitarSpec& target)
-    {
-        std::list<const Instrument*> matches;
-        for (auto& pItem : stock)
-        {
-            if (pItem->getSpec() == target)
-            {
-                matches.push_back(pItem);
-            }
-        }
-        return matches;
-    }
-
-    std::list<const Instrument*> search(const MandolinSpec& target)
+    std::list<const Instrument*> search(const InstrumentSpec& target)
     {
         std::list<const Instrument*> matches;
         for (auto& pItem : stock)

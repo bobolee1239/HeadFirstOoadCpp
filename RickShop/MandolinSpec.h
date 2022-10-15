@@ -26,12 +26,12 @@ public:
     Style getStyle() const
     {return style;}
 
-    bool equal(const MandolinSpec& other)
+    bool equal(const MandolinSpec& other) const
     {
         return InstrumentSpec::equal(static_cast<const InstrumentSpec&>(other)) &&
                style == other.style;
     }
-    bool equal(const InstrumentSpec& other)
+    bool equal(const InstrumentSpec& other) const
     {
         const MandolinSpec* pOtherMandolin = dynamic_cast<const MandolinSpec*>(&other);
         if (pOtherMandolin)
@@ -43,11 +43,11 @@ public:
         {return false;}
     }
 
-    bool operator == (const MandolinSpec& other) 
+    bool operator == (const MandolinSpec& other) const
     {
         return equal(other);
     }
-    bool operator == (const InstrumentSpec& other) 
+    bool operator == (const InstrumentSpec& other) const
     {
         return equal(other);
     }

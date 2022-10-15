@@ -26,7 +26,7 @@ int main(int argc, char* argv[])
 
     GuitarSpec whatErinLikes(FENDER, "Stratocastor", ELECTRIC, 6, ALDER, ALDER);
     
-    list<const Instrument*> matches = inventory.search(whatErinLikes);
+    list<const Instrument*> matches = inventory.search(static_cast<const InstrumentSpec&>(whatErinLikes));
 
     const int numFound = matches.size();
     if (numFound)

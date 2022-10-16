@@ -3,6 +3,7 @@
 
 #include <string>
 #include "Instrument.h"
+#include "InstrumentSpec.h"
 #include "GuitarSpec.h"
 
 class Guitar : public Instrument
@@ -12,10 +13,13 @@ public:
         const std::string &serialNumber, 
         const double       price,
         GuitarSpec        &spec
-    ) : Instrument(serialNumber, price, static_cast<InstrumentSpec&>(this->spec)), spec(spec)
+    ) : Instrument(serialNumber, price), spec(spec)
     {}
 
     ~Guitar() {}
+
+    const InstrumentSpec& getSpec() const
+    {return static_cast<const InstrumentSpec&>(spec);}
 
 private:
     GuitarSpec spec;

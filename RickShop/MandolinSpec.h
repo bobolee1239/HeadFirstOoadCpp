@@ -21,6 +21,8 @@ public:
      : InstrumentSpec(static_cast<const InstrumentSpec&>(other)), style(other.style)
     {}
 
+    ~MandolinSpec() {}
+
     Style getStyle() const
     {return style;}
 

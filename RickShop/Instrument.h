@@ -14,6 +14,8 @@ public:
     ) : serialNumber(serialNumber), price(price), spec(spec)
     {}
 
+    virtual ~Instrument() = 0;
+
     std::string getSerialNumber() const
     {return serialNumber;}
     
@@ -41,6 +43,7 @@ private:
     InstrumentSpec &spec;
 };
 
+Instrument::~Instrument() {}
 
 
 #endif // !INSTRUMENT_H

@@ -15,6 +15,8 @@ public:
     ) : Instrument(serialNumber, price, static_cast<InstrumentSpec&>(this->spec)), spec(spec)
     {}
 
+    ~Guitar() {}
+
 private:
     GuitarSpec spec;
 };

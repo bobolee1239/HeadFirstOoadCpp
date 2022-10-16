@@ -23,6 +23,8 @@ public:
      : builder(other.builder), model(other.model), topWood(other.topWood), backWood(other.backWood), type(other.type)
     {}
 
+    virtual ~InstrumentSpec() = 0;
+
     Builder getBuilder() const
     {return builder;}
 
@@ -67,5 +69,6 @@ private:
     Type    type;
 };
 
+InstrumentSpec::~InstrumentSpec() {}
 
 #endif // !INSTRUMENT_SPEC_H

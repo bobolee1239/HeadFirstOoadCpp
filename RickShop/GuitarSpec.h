@@ -24,6 +24,8 @@ public:
      : InstrumentSpec(static_cast<const InstrumentSpec&>(other)), numStrings(other.numStrings)
     {}
 
+    ~GuitarSpec() {}
+
     int getNumStrings() const
     {return numStrings;}
 

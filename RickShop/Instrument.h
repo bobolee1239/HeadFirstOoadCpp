@@ -14,21 +14,15 @@ public:
     ) : serialNumber(serialNumber), price(price), spec(spec)
     {}
 
-    std::string getSerialNumber()
-    {return serialNumber;}
     std::string getSerialNumber() const
     {return serialNumber;}
     
-    double getPrice() 
-    {return price;}
     double getPrice() const
     {return price;}
 
     void setPrice(const double newPrice)
     {price = newPrice;}
 
-    const InstrumentSpec& getSpec() 
-    {return spec;}
     const InstrumentSpec& getSpec() const
     {return spec;}
 

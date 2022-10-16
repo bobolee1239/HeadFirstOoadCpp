@@ -24,8 +24,6 @@ public:
      : InstrumentSpec(static_cast<const InstrumentSpec&>(other)), numStrings(other.numStrings)
     {}
 
-    int getNumStrings()
-    {return numStrings;}
     int getNumStrings() const
     {return numStrings;}
 

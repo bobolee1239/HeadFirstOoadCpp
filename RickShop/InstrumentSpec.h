@@ -23,28 +23,18 @@ public:
      : builder(other.builder), model(other.model), topWood(other.topWood), backWood(other.backWood), type(other.type)
     {}
 
-    Builder getBuilder()
-    {return builder;}
     Builder getBuilder() const
     {return builder;}
 
-    std::string getModel()
-    {return model;}
     std::string getModel() const
     {return model;}
 
-    Type getType()
-    {return type;}
     Type getType() const
     {return type;}
 
-    Wood getBackWood()
-    {return backWood;}
     Wood getBackWood() const
     {return backWood;}
 
-    Wood getTopWood()
-    {return topWood;}
     Wood getTopWood() const
     {return topWood;}
 

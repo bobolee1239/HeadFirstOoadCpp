@@ -21,8 +21,6 @@ public:
      : InstrumentSpec(static_cast<const InstrumentSpec&>(other)), style(other.style)
     {}
 
-    Style getStyle()
-    {return style;}
     Style getStyle() const
     {return style;}
 

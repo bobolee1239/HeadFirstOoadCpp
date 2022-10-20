@@ -58,6 +58,10 @@ void constructInventory(Inventory& inventory)
         GuitarSpec(FENDER, "Stratocastor", ELECTRIC, 
             6, ALDER, ALDER
             ));
+    inventory.addInstrument("Brian5", 1006.802, 
+        MandolinSpec(FENDER, "Stratocastor", ELECTRIC, 
+            A, ALDER, ALDER
+            ));
     inventory.addInstrument("V9512", 1549.95, 
         GuitarSpec(FENDER, "Stratocastor", ELECTRIC, 
             6, ALDER, ALDER

@@ -8,11 +8,6 @@
 #include "Instrument.h"
 #include "InstrumentSpec.h"
 
-#include "Guitar.h"
-#include "GuitarSpec.h"
-#include "Mandolin.h"
-#include "MandolinSpec.h"
-
 class Inventory 
 {
 public:
@@ -32,28 +27,13 @@ public:
         const double          price,
         InstrumentSpec      &&spec
     ) {
-        int ret = 1;
-        if (dynamic_cast<GuitarSpec*>(&spec))
-        {
-            stock.push_back(static_cast<Instrument*>(
-                new Guitar(
-                    serialNumber, 
-                    price, 
-                    dynamic_cast<GuitarSpec&>(spec)
-                    )));
-        }
-        else if (dynamic_cast<MandolinSpec*>(&spec))
-        {
-            stock.push_back(static_cast<Instrument*>(
-                new Mandolin(
-                    serialNumber,
-                    price,
-                    dynamic_cast<MandolinSpec&>(spec)
-                )));
-        }
-        else
-        {ret = 0;}
-        return ret;
+        stock.push_back(
+            new Instrument(
+                serialNumber, 
+                price, 
+                spec
+                ));
+        return 1;
     }
 
     const Instrument* get(const std::string& serialNumber) 

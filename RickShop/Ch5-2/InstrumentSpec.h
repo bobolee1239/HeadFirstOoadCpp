@@ -3,72 +3,68 @@
 
 #include <iostream>
 #include <string>
-#include "Wood.h"
-#include "Type.h"
-#include "Builder.h"
+#include <map>
+
+#include "PropertyKey.h"
+#include "PropertyValue.h"
 
 class InstrumentSpec 
 {
 public:
-    InstrumentSpec(
-        const Builder     &builder, 
-        const std::string &model, 
-        const Type        &type,
-        const Wood        &backWood,
-        const Wood        &topWood
-    ) : builder(builder), model(model), topWood(topWood), backWood(backWood), type(type)
+    InstrumentSpec(const std::map<PropertyKey, PropertyValue*> &property) 
+     : property(property)
     {}
 
     InstrumentSpec(const InstrumentSpec& other)
-     : builder(other.builder), model(other.model), topWood(other.topWood), backWood(other.backWood), type(other.type)
+     : property(other.property)
     {}
 
-    virtual ~InstrumentSpec() = 0;
-
-    Builder getBuilder() const
-    {return builder;}
-
-    std::string getModel() const
-    {return model;}
-
-    Type getType() const
-    {return type;}
-
-    Wood getBackWood() const
-    {return backWood;}
-
-    Wood getTopWood() const
-    {return topWood;}
-
-    virtual bool equal(const InstrumentSpec& other) const
+    const PropertyValue* getProperty(const PropertyKey& key) const 
     {
-        const bool match = (builder  == other.builder)   &&
-                           (model    == other.model)     &&
-                           (type     == other.type)      &&
-                           (backWood == other.backWood)  &&
-                           (topWood  == other.topWood);
-        return match;
+        auto itr = property.find(key);
+        if (itr == property.end())
+        {return NULL;}
+        else
+        {return itr->second;}
     }
 
-    virtual bool operator == (const InstrumentSpec& other) const
+    std::map<PropertyKey, PropertyValue*> getProperties() const
+    {
+        return property;
+    }
+
+    bool equal(const InstrumentSpec& other) const
+    {
+        for (auto &[key, pValue] : other.property)
+        {
+            auto itr = property.find(key);
+            if (itr == property.end())
+            {return false;}
+            else if (*(itr->second) != *pValue)
+            {return false;}
+        }
+        return true;
+    }
+
+    bool operator == (const InstrumentSpec& other) const
     {
         return equal(other);
     }
 
     friend std::ostream& operator << (std::ostream& os, const InstrumentSpec& spec)
     {
-        os << "[InstrumentSpec] model:" << spec.model << ",builder:" << spec.builder << ",topWood:" << spec.topWood;
-        os << ",backWood:" << spec.backWood << ",type:" << spec.type; 
+        os << "[InstrumentSpec]";
+        // for (auto& [key, pValue] : spec.property)
+        // {
+        //     os << key << ": " << (*pValue) << ", ";
+
+        // }
         return os;
     }
+
 private:
-    std::string model;
-    Builder builder;
-    Wood    topWood;
-    Wood    backWood;
-    Type    type;
+    std::map<PropertyKey, PropertyValue*> property;
 };
 
-InstrumentSpec::~InstrumentSpec() {}
 
 #endif // !INSTRUMENT_SPEC_H

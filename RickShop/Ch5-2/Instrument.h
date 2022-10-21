@@ -9,11 +9,10 @@ class Instrument {
 public:
     Instrument(
         const std::string    &serialNumber, 
-        const double          price
-    ) : serialNumber(serialNumber), price(price)
+        const double          price,
+        const InstrumentSpec  spec
+    ) : serialNumber(serialNumber), price(price), spec(spec)
     {}
-
-    virtual ~Instrument() = 0;
 
     std::string getSerialNumber() const
     {return serialNumber;}
@@ -24,7 +23,8 @@ public:
     void setPrice(const double newPrice)
     {price = newPrice;}
 
-    virtual const InstrumentSpec& getSpec() const = 0;
+    const InstrumentSpec& getSpec() const
+    {return spec;}
 
     friend std::ostream& operator << (std::ostream& os, const Instrument& instrument)
     {
@@ -38,9 +38,7 @@ public:
 private:
     std::string     serialNumber;
     double          price;
+    InstrumentSpec  spec;
 };
-
-Instrument::~Instrument() {}
-
 
 #endif // !INSTRUMENT_H

@@ -10,6 +10,7 @@ public:
     {}
 
     virtual ~PropertyValue() = 0;
+    virtual PropertyValue* dup() = 0;
     virtual bool operator == (const PropertyValue& rhs) const = 0;
     virtual bool operator != (const PropertyValue& rhs) const = 0;
     virtual bool equal(const PropertyValue& rhs) const = 0;
@@ -23,6 +24,11 @@ public:
     Property(const T& data) : PropertyValue(), data(data)
     {}
     ~Property() {}
+
+    virtual PropertyValue* dup()
+    {
+        return static_cast<PropertyValue*>(new Property(*this));
+    }
 
     bool equal(const Property& rhs) const 
     {return data == rhs.data;}

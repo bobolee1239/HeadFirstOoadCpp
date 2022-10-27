@@ -36,6 +36,12 @@ using namespace std;
         prop.insert(make_pair(STYLE          , new Property<Style>(style)));            \
     } while (0)
 
+#define CLEAR_PROPERTIES(prop)          \
+    do {                                \
+        for (auto& [key, value] : prop) \
+        {delete value;}                 \
+        prop.clear();                   \
+    } while (0)
 
 void constructInventory(Inventory& inventory);
 
@@ -49,6 +55,7 @@ int main(int argc, char* argv[])
     map<PropertyKey, PropertyValue*> prop;
     SET_GUITAR_PROPERTIES(prop, FENDER, "Stratocastor", ELECTRIC, ALDER, ALDER, 6);
     InstrumentSpec whatErinLikes(prop);
+    CLEAR_PROPERTIES(prop);
     
     list<const Instrument*> matches = inventory.search(whatErinLikes);
 
@@ -76,51 +83,53 @@ void constructInventory(Inventory& inventory)
 {
     map<PropertyKey, PropertyValue*> prop;
 
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, COLLINGS, "CJ", ACOUSTIC, INDIAN_ROSEWOOD, SITKA, 6);
-    inventory.addInstrument("11277", 3999.95, prop);
+    inventory.addInstrument("11277", 3999.95, InstrumentSpec(prop));
 
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, FENDER, "Stratocastor", ELECTRIC, ALDER, ALDER, 6);
-    inventory.addInstrument("V95693", 1499.95, prop);
+    inventory.addInstrument("V95693", 1499.95, InstrumentSpec(prop));
     
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_MANDOLIN_PROPERTIES(prop, FENDER, "Stratocastor", ELECTRIC, ALDER, ALDER, A);
-    inventory.addInstrument("Brian5", 1006.802, prop);
+    inventory.addInstrument("Brian5", 1006.802, InstrumentSpec(prop));
     
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, FENDER, "Stratocastor", ELECTRIC, ALDER, ALDER, 6);
-    inventory.addInstrument("V9512", 1549.95, prop);
+    inventory.addInstrument("V9512", 1549.95, InstrumentSpec(prop));
     
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, MARTIN, "D-18", ACOUSTIC, MAHOGANY, ADIRONDACK, 6);
-    inventory.addInstrument("122784", 5495.95, prop);
+    inventory.addInstrument("122784", 5495.95, InstrumentSpec(prop));
     
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, MARTIN, "OM-28", ACOUSTIC, BRAZILIAN_ROSEWOOD, ADIRONDACK, 6);
-    inventory.addInstrument("76531", 6295.95, prop);
+    inventory.addInstrument("76531", 6295.95, InstrumentSpec(prop));
     
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, GIBSON, "Les Paul", ELECTRIC, MAHOGANY, MAHOGANY, 6);
-    inventory.addInstrument("70108276", 2295.95, prop);
+    inventory.addInstrument("70108276", 2295.95, InstrumentSpec(prop));
 
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, GIBSON, "SG '61 Reissue", ELECTRIC, MAHOGANY, MAHOGANY, 6);
-    inventory.addInstrument("82765501", 1890.95, prop);
+    inventory.addInstrument("82765501", 1890.95, InstrumentSpec(prop));
 
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, MARTIN, "D-28", ACOUSTIC, BRAZILIAN_ROSEWOOD, ADIRONDACK, 6);
-    inventory.addInstrument("77023", 6275.95, prop);
+    inventory.addInstrument("77023", 6275.95, InstrumentSpec(prop));
     
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, OLSON, "SJ", ACOUSTIC, INDIAN_ROSEWOOD, CEDAR, 12);
-    inventory.addInstrument("1092", 12995.95, prop);
+    inventory.addInstrument("1092", 12995.95, InstrumentSpec(prop));
 
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, RYAN, "Cathedral", ACOUSTIC, COCOBOLO, CEDAR, 12);
-    inventory.addInstrument("566-62", 8999.95, prop);
+    inventory.addInstrument("566-62", 8999.95, InstrumentSpec(prop));
     
-    prop.clear();
+    CLEAR_PROPERTIES(prop);
     SET_GUITAR_PROPERTIES(prop, PRS, "Dave Navarro Signature", ELECTRIC, MAHOGANY, MAPLE, 6);
-    inventory.addInstrument("6 29584", 2100.95, prop);
+    inventory.addInstrument("6 29584", 2100.95, InstrumentSpec(prop));
+
+    CLEAR_PROPERTIES(prop);
 }

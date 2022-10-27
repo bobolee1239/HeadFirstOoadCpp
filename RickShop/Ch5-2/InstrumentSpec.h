@@ -12,12 +12,28 @@ class InstrumentSpec
 {
 public:
     InstrumentSpec(const std::map<PropertyKey, PropertyValue*> &property) 
-     : property(property)
-    {}
+    {
+        for (auto& [key, value] : property)
+        {
+            this->property.insert(std::make_pair(key, value->dup()));
+        }
+    }
 
     InstrumentSpec(const InstrumentSpec& other)
-     : property(other.property)
-    {}
+    {
+        for (auto& [key, value] : other.property)
+        {
+            this->property.insert(std::make_pair(key, value->dup()));
+        }
+    }
+
+    ~InstrumentSpec()
+    {
+        for (auto& [key, value] : property)
+        {
+            delete value;
+        }
+    }
 
     const PropertyValue* getProperty(const PropertyKey& key) const 
     {
@@ -57,7 +73,6 @@ public:
         // for (auto& [key, pValue] : spec.property)
         // {
         //     os << key << ": " << (*pValue) << ", ";
-
         // }
         return os;
     }

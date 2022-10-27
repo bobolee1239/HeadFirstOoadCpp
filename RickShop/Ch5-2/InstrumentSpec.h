@@ -69,11 +69,14 @@ public:
 
     friend std::ostream& operator << (std::ostream& os, const InstrumentSpec& spec)
     {
-        os << "[InstrumentSpec]";
-        // for (auto& [key, pValue] : spec.property)
-        // {
-        //     os << key << ": " << (*pValue) << ", ";
-        // }
+        os << "[InstrumentSpec] {";
+        for (auto& [key, pValue] : spec.property)
+        {
+            os << key << ":";
+            pValue->log(os);
+            os << ", ";
+        }
+        os << "}";
         return os;
     }
 

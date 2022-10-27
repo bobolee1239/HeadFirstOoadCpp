@@ -14,6 +14,7 @@ public:
     virtual bool operator == (const PropertyValue& rhs) const = 0;
     virtual bool operator != (const PropertyValue& rhs) const = 0;
     virtual bool equal(const PropertyValue& rhs) const = 0;
+    virtual void log(std::ostream& os) const = 0;
 };
 
 PropertyValue::~PropertyValue() {}
@@ -51,21 +52,14 @@ public:
     virtual bool operator != (const PropertyValue& rhs) const
     {return !equal(rhs);}
 
-    friend std::ostream& operator << (std::ostream& os, const Property<T>& value)
+    virtual void log(std::ostream& os) const
     {
-        os << value.data;
-        return os;
+        os << data;
     }
 
 private:
     T data;
 };
 
-// template<class T>
-// std::ostream& operator << (std::ostream& os, const PropertyValue<T>& value)
-// {
-//     os << value.data;
-//     return os;
-// }
 
 #endif // !PROPERTY_VALUE_H

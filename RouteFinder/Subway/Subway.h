@@ -15,6 +15,14 @@ public:
         return stations.count(Station(stationName));
     }
 
+    bool hasConnection(
+        const std::string& station1Name,
+        const std::string& station2Name,
+        const std::string& lineName
+    ) {
+        return connections.count(Connection(station1Name, station2Name, lineName));
+    }
+
     void addStation(const std::string& stationName)
     {
         if (!hasStation(stationName))

@@ -31,7 +31,7 @@ public:
         const bool isValid = hasStation(station1Name) && hasStation(station2Name);
         if (!isValid)
         {
-            throw std::runtime_error("Invalid Connection!");
+            throw std::runtime_error("Invalid Connection between " + station1Name + " and " + station2Name);
         }
         Station station1(station1Name);
         Station station2(station2Name);

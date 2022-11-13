@@ -19,6 +19,9 @@ add_definitions(
 add_executable(SubwayTester
     Test/TestSubway.cpp 
     )
+add_executable(SubwayLoaderTester
+    Test/TestSubwayLoader.cpp 
+    )
 # target_link_libraries(RouteFinderTest
 #     RouteFinder
 #     )
